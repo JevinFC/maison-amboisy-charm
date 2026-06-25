@@ -56,72 +56,197 @@ const MAPS_EMBED =
   encodeURIComponent("99 Rue Nationale, 37400 Amboise") +
   "&output=embed";
 
-const NAV = [
-  { href: "#accueil", label: "Accueil" },
-  { href: "#produits", label: "Nos Produits" },
-  { href: "#histoire", label: "Notre Histoire" },
-  { href: "#avis", label: "Avis" },
-  { href: "#trouver", label: "Nous trouver" },
-];
+type Lang = "FR" | "EN";
 
-const PRODUITS = [
-  {
-    title: "Pains",
-    img: imgPains,
-    desc: "Baguette tradition, tourte de campagne, pain complet et pains spéciaux.",
-    tags: ["Levain naturel", "Blé français CRC"],
+const T = {
+  FR: {
+    nav: [
+      { href: "#accueil", label: "Accueil" },
+      { href: "#produits", label: "Nos Produits" },
+      { href: "#histoire", label: "Notre Histoire" },
+      { href: "#avis", label: "Avis" },
+      { href: "#trouver", label: "Nous trouver" },
+    ],
+    heroBadge: "Amboise · Val de Loire",
+    heroTitle: ["Une boulangerie artisanale", "au cœur d'Amboise"],
+    heroSubtitle:
+      "Pain au levain naturel, viennoiseries pur beurre et pâtisseries faites maison chaque jour. Du blé français issu de la filière CRC, un savoir-faire transmis avec passion.",
+    ctaFind: "Nous trouver",
+    values: [
+      { t: "Blé français CRC", s: "Culture raisonnée & contrôlée" },
+      { t: "Levain naturel", s: "Fermentation longue, mie aérée" },
+      { t: "100% fait maison", s: "Chaque jour dans notre fournil" },
+    ],
+    productsEyebrow: "Nos produits",
+    productsTitle: "Le meilleur de la tradition française",
+    productsIntro:
+      "Toute notre gamme est élaborée chaque matin, à partir d'ingrédients soigneusement sélectionnés, dans le respect des gestes artisanaux.",
+    products: [
+      {
+        title: "Pains",
+        desc: "Baguette tradition, tourte de campagne, pain complet et pains spéciaux.",
+        tags: ["Levain naturel", "Blé français CRC"],
+      },
+      {
+        title: "Viennoiseries",
+        desc: "Croissants pur beurre, pains au chocolat, brioches et chaussons feuilletés à la main.",
+        tags: ["Pur beurre", "Fait maison"],
+      },
+      {
+        title: "Pâtisseries",
+        desc: "Tartes de saison, éclairs, paris-brest et créations du chef pâtissier.",
+        tags: ["Fruits de saison", "100% maison"],
+      },
+      {
+        title: "Sandwichs & snacking",
+        desc: "Sandwichs sur baguette tradition, quiches, salades et formules à emporter.",
+        tags: ["À emporter", "Frais du jour"],
+      },
+    ],
+    historyEyebrow: "Notre histoire",
+    historyTitle: "Le pain comme un geste de transmission",
+    historyP1:
+      "Installée depuis plusieurs années sur la Rue Nationale, à deux pas de l'église Saint-Denis et du château d'Amboise, la Maison Girondon perpétue les gestes d'une boulangerie-pâtisserie authentique. Levain naturel, pétrissage doux, longues fermentations : chaque pain raconte la patience de l'artisan.",
+    historyP2:
+      "Notre équipe vous accueille chaque jour avec le sourire, qu'il s'agisse de la baguette du quotidien ou d'une pâtisserie pour célébrer un moment d'exception au cœur du Val de Loire.",
+    yearsBadge: "+30 ans",
+    yearsBadgeSub: "de passion",
+    reviewsRating: "4,5 / 5 sur Google",
+    reviewsTitle: "Ce que disent nos clients",
+    reviews: [
+      {
+        name: "Camille L.",
+        text: "La meilleure baguette d'Amboise ! Croûte croustillante, mie alvéolée, on sent le vrai savoir-faire.",
+      },
+      {
+        name: "Jean-Pierre M.",
+        text: "Accueil très chaleureux, viennoiseries exceptionnelles. Une étape obligatoire avant la visite du château.",
+      },
+      {
+        name: "Sophie R.",
+        text: "Pâtisseries d'une grande finesse et pain au levain remarquable. Bravo à toute l'équipe.",
+      },
+    ],
+    galleryEyebrow: "Galerie",
+    galleryTitle: "Un aperçu de la maison",
+    findEyebrow: "Nous trouver",
+    findTitle: "Au pied du château d'Amboise",
+    findIntro:
+      "En plein centre-ville, à quelques pas de l'église Saint-Denis et du château royal. Idéal pour une pause gourmande pendant votre visite du Val de Loire.",
+    itinerary: "Itinéraire",
+    callShop: "Appeler la boutique",
+    hoursTitle: "Horaires d'ouverture",
+    days: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
+    closed: "Fermé",
+    hoursWeek: "7h00 – 13h00 · 15h30 – 19h00",
+    hoursSat: "7h00 – 13h00 · 15h30 – 18h30",
+    footerTagline: "Boulangerie-pâtisserie artisanale au cœur d'Amboise, Val de Loire.",
+    footerContact: "Contact",
+    footerFollow: "Suivez-nous",
+    footerRights: "Tous droits réservés.",
+    footerLegal: "Site vitrine · Mentions légales",
+    menuLabel: "Menu",
   },
-  {
-    title: "Viennoiseries",
-    img: imgViennoiseries,
-    desc: "Croissants pur beurre, pains au chocolat, brioches et chaussons feuilletés à la main.",
-    tags: ["Pur beurre", "Fait maison"],
+  EN: {
+    nav: [
+      { href: "#accueil", label: "Home" },
+      { href: "#produits", label: "Our Products" },
+      { href: "#histoire", label: "Our Story" },
+      { href: "#avis", label: "Reviews" },
+      { href: "#trouver", label: "Find Us" },
+    ],
+    heroBadge: "Amboise · Loire Valley",
+    heroTitle: ["An artisan bakery", "in the heart of Amboise"],
+    heroSubtitle:
+      "Naturally leavened bread, pure butter pastries and patisseries handcrafted every day. French CRC wheat and a savoir-faire passed down with passion.",
+    ctaFind: "Find us",
+    values: [
+      { t: "French CRC wheat", s: "Sustainably grown & controlled" },
+      { t: "Natural sourdough", s: "Long fermentation, open crumb" },
+      { t: "100% handmade", s: "Every day in our bakehouse" },
+    ],
+    productsEyebrow: "Our products",
+    productsTitle: "The best of French tradition",
+    productsIntro:
+      "Our entire range is crafted each morning from carefully selected ingredients, in keeping with true artisan know-how.",
+    products: [
+      {
+        title: "Breads",
+        desc: "Traditional baguette, country sourdough, wholemeal and specialty loaves.",
+        tags: ["Natural sourdough", "French CRC wheat"],
+      },
+      {
+        title: "Viennoiseries",
+        desc: "Pure butter croissants, pains au chocolat, brioches and hand-folded turnovers.",
+        tags: ["Pure butter", "Handmade"],
+      },
+      {
+        title: "Pastries",
+        desc: "Seasonal tarts, éclairs, paris-brest and signature creations from our pastry chef.",
+        tags: ["Seasonal fruit", "100% homemade"],
+      },
+      {
+        title: "Sandwiches & snacks",
+        desc: "Sandwiches on traditional baguette, quiches, salads and ready-to-go options.",
+        tags: ["Takeaway", "Fresh daily"],
+      },
+    ],
+    historyEyebrow: "Our story",
+    historyTitle: "Bread as an act of transmission",
+    historyP1:
+      "Settled for many years on Rue Nationale, just steps from Saint-Denis church and the Royal Château of Amboise, Maison Girondon carries on the gestures of a genuine artisan bakery. Natural sourdough, gentle kneading, long fermentations: every loaf tells the patience of the baker.",
+    historyP2:
+      "Our team welcomes you each day with a smile, whether for the daily baguette or a pastry to celebrate a special moment in the heart of the Loire Valley.",
+    yearsBadge: "30+ years",
+    yearsBadgeSub: "of passion",
+    reviewsRating: "4.5 / 5 on Google",
+    reviewsTitle: "What our customers say",
+    reviews: [
+      {
+        name: "Camille L.",
+        text: "The best baguette in Amboise! Crispy crust, airy crumb — you can really taste the craft.",
+      },
+      {
+        name: "Jean-Pierre M.",
+        text: "Very warm welcome and outstanding viennoiseries. A must-stop before visiting the château.",
+      },
+      {
+        name: "Sophie R.",
+        text: "Pastries of great finesse and a remarkable sourdough. Hats off to the whole team.",
+      },
+    ],
+    galleryEyebrow: "Gallery",
+    galleryTitle: "A glimpse of the bakery",
+    findEyebrow: "Find us",
+    findTitle: "At the foot of the Château d'Amboise",
+    findIntro:
+      "Right in the town centre, a few steps from Saint-Denis church and the royal château. The perfect gourmet stop during your Loire Valley visit.",
+    itinerary: "Directions",
+    callShop: "Call the shop",
+    hoursTitle: "Opening hours",
+    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    closed: "Closed",
+    hoursWeek: "7:00 am – 1:00 pm · 3:30 pm – 7:00 pm",
+    hoursSat: "7:00 am – 1:00 pm · 3:30 pm – 6:30 pm",
+    footerTagline: "Artisan bakery & patisserie in the heart of Amboise, Loire Valley.",
+    footerContact: "Contact",
+    footerFollow: "Follow us",
+    footerRights: "All rights reserved.",
+    footerLegal: "Showcase site · Legal notice",
+    menuLabel: "Menu",
   },
-  {
-    title: "Pâtisseries",
-    img: imgPatisseries,
-    desc: "Tartes de saison, éclairs, paris-brest et créations du chef pâtissier.",
-    tags: ["Fruits de saison", "100% maison"],
-  },
-  {
-    title: "Sandwichs & snacking",
-    img: imgSnacking,
-    desc: "Sandwichs sur baguette tradition, quiches, salades et formules à emporter.",
-    tags: ["À emporter", "Frais du jour"],
-  },
-];
-
-const AVIS = [
-  {
-    name: "Camille L.",
-    text:
-      "La meilleure baguette d'Amboise ! Croûte croustillante, mie alvéolée, on sent le vrai savoir-faire.",
-  },
-  {
-    name: "Jean-Pierre M.",
-    text:
-      "Accueil très chaleureux, viennoiseries exceptionnelles. Une étape obligatoire avant la visite du château.",
-  },
-  {
-    name: "Sophie R.",
-    text:
-      "Pâtisseries d'une grande finesse et pain au levain remarquable. Bravo à toute l'équipe.",
-  },
-];
-
-const HORAIRES = [
-  { jour: "Lundi", h: "Fermé" },
-  { jour: "Mardi", h: "7h00 – 13h00 · 15h30 – 19h00" },
-  { jour: "Mercredi", h: "7h00 – 13h00 · 15h30 – 19h00" },
-  { jour: "Jeudi", h: "7h00 – 13h00 · 15h30 – 19h00" },
-  { jour: "Vendredi", h: "7h00 – 13h00 · 15h30 – 19h00" },
-  { jour: "Samedi", h: "7h00 – 13h00 · 15h30 – 18h30" },
-  { jour: "Dimanche", h: "Fermé" },
-];
+} as const;
 
 function Home() {
-  const [lang, setLang] = useState<"FR" | "EN">("FR");
+  const [lang, setLang] = useState<Lang>("FR");
   const [open, setOpen] = useState(false);
+  const t = T[lang];
+
+  const productImgs = [imgPains, imgViennoiseries, imgPatisseries, imgSnacking];
+  const horaires = t.days.map((jour, i) => ({
+    jour,
+    h: i === 0 || i === 6 ? t.closed : i === 5 ? t.hoursSat : t.hoursWeek,
+  }));
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -135,7 +260,7 @@ function Home() {
           </a>
 
           <nav className="hidden items-center gap-7 lg:flex">
-            {NAV.map((n) => (
+            {t.nav.map((n) => (
               <a
                 key={n.href}
                 href={n.href}
@@ -166,7 +291,7 @@ function Home() {
             <button
               className="grid h-10 w-10 place-items-center rounded-md text-foreground lg:hidden"
               onClick={() => setOpen((v) => !v)}
-              aria-label="Menu"
+              aria-label={t.menuLabel}
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -176,7 +301,7 @@ function Home() {
         {open && (
           <div className="border-t border-border bg-background lg:hidden">
             <nav className="mx-auto flex max-w-6xl flex-col px-4 py-3 sm:px-6">
-              {NAV.map((n) => (
+              {t.nav.map((n) => (
                 <a
                   key={n.href}
                   href={n.href}
@@ -208,7 +333,7 @@ function Home() {
         <div className="absolute inset-0 -z-10">
           <img
             src={heroVitrine}
-            alt="Vitrine de la boulangerie Maison Girondon à Amboise"
+            alt="Maison Girondon storefront in Amboise"
             width={1920}
             height={1280}
             className="h-full w-full object-cover"
@@ -218,22 +343,20 @@ function Home() {
 
         <div className="mx-auto max-w-5xl px-4 py-24 text-center sm:px-6 sm:py-32 md:py-40">
           <span className="inline-flex items-center gap-2 rounded-full border border-cream/40 bg-bark/30 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-cream backdrop-blur">
-            <Wheat className="h-3.5 w-3.5" /> Amboise · Val de Loire
+            <Wheat className="h-3.5 w-3.5" /> {t.heroBadge}
           </span>
           <h1 className="text-balance mt-6 font-display text-4xl font-semibold leading-[1.05] text-cream sm:text-6xl md:text-7xl">
-            Une boulangerie artisanale<br className="hidden sm:inline" /> au cœur d'Amboise
+            {t.heroTitle[0]}<br className="hidden sm:inline" /> {t.heroTitle[1]}
           </h1>
           <p className="text-balance mx-auto mt-6 max-w-2xl text-base leading-relaxed text-cream/85 sm:text-lg">
-            Pain au levain naturel, viennoiseries pur beurre et pâtisseries faites
-            maison chaque jour. Du blé français issu de la filière CRC, un
-            savoir-faire transmis avec passion.
+            {t.heroSubtitle}
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <a
               href="#trouver"
               className="inline-flex items-center gap-2 rounded-full bg-bordeaux px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-bark/30 transition-transform hover:-translate-y-0.5"
             >
-              <MapPin className="h-4 w-4" /> Nous trouver
+              <MapPin className="h-4 w-4" /> {t.ctaFind}
             </a>
             <a
               href={`tel:${PHONE_TEL}`}
@@ -247,46 +370,44 @@ function Home() {
 
       <section className="border-y border-border bg-secondary">
         <div className="mx-auto grid max-w-6xl gap-6 px-4 py-8 sm:grid-cols-3 sm:px-6">
-          {[
-            { icon: Wheat, t: "Blé français CRC", s: "Culture raisonnée & contrôlée" },
-            { icon: Leaf, t: "Levain naturel", s: "Fermentation longue, mie aérée" },
-            { icon: Star, t: "100% fait maison", s: "Chaque jour dans notre fournil" },
-          ].map((v) => (
-            <div key={v.t} className="flex items-center gap-4">
-              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-bordeaux/10 text-bordeaux">
-                <v.icon className="h-5 w-5" />
+          {t.values.map((v, i) => {
+            const Icon = [Wheat, Leaf, Star][i];
+            return (
+              <div key={v.t} className="flex items-center gap-4">
+                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-bordeaux/10 text-bordeaux">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div className="min-w-0">
+                  <p className="font-display text-lg font-semibold text-bark">{v.t}</p>
+                  <p className="text-sm text-muted-foreground">{v.s}</p>
+                </div>
               </div>
-              <div className="min-w-0">
-                <p className="font-display text-lg font-semibold text-bark">{v.t}</p>
-                <p className="text-sm text-muted-foreground">{v.s}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
       <section id="produits" className="py-20 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brick">Nos produits</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brick">{t.productsEyebrow}</p>
             <h2 className="mt-3 font-display text-3xl font-semibold text-bark sm:text-5xl">
-              Le meilleur de la tradition française
+              {t.productsTitle}
             </h2>
             <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-              Toute notre gamme est élaborée chaque matin, à partir d'ingrédients
-              soigneusement sélectionnés, dans le respect des gestes artisanaux.
+              {t.productsIntro}
             </p>
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {PRODUITS.map((p) => (
+            {t.products.map((p, i) => (
               <article
                 key={p.title}
                 className="group overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-xl hover:shadow-bark/10"
               >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
-                    src={p.img}
+                    src={productImgs[i]}
                     alt={p.title}
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -296,12 +417,12 @@ function Home() {
                   <h3 className="font-display text-xl font-semibold text-bark">{p.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
                   <div className="mt-4 flex flex-wrap gap-1.5">
-                    {p.tags.map((t) => (
+                    {p.tags.map((tag) => (
                       <span
-                        key={t}
+                        key={tag}
                         className="rounded-full bg-secondary px-2.5 py-1 text-[11px] font-medium text-bark/80"
                       >
-                        {t}
+                        {tag}
                       </span>
                     ))}
                   </div>
@@ -317,35 +438,25 @@ function Home() {
           <div className="relative">
             <img
               src={imgHistoire}
-              alt="Le savoir-faire de la Maison Girondon"
+              alt={lang === "FR" ? "Le savoir-faire de la Maison Girondon" : "The craft of Maison Girondon"}
               width={1280}
               height={960}
               loading="lazy"
               className="aspect-[5/4] w-full rounded-3xl object-cover shadow-xl shadow-bark/15"
             />
             <div className="absolute -bottom-6 -right-2 hidden rounded-2xl bg-bordeaux px-5 py-4 text-primary-foreground shadow-lg sm:block">
-              <p className="font-display text-3xl font-semibold leading-none">+30 ans</p>
-              <p className="text-xs uppercase tracking-widest opacity-80">de passion</p>
+              <p className="font-display text-3xl font-semibold leading-none">{t.yearsBadge}</p>
+              <p className="text-xs uppercase tracking-widest opacity-80">{t.yearsBadgeSub}</p>
             </div>
           </div>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brick">Notre histoire</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brick">{t.historyEyebrow}</p>
             <h2 className="text-balance mt-3 font-display text-3xl font-semibold text-bark sm:text-5xl">
-              Le pain comme un geste de transmission
+              {t.historyTitle}
             </h2>
-            <p className="mt-5 text-base leading-relaxed text-foreground/85">
-              Installée depuis plusieurs années sur la Rue Nationale, à deux pas
-              de l'église Saint-Denis et du château d'Amboise, la Maison
-              Girondon perpétue les gestes d'une boulangerie-pâtisserie
-              authentique. Levain naturel, pétrissage doux, longues
-              fermentations : chaque pain raconte la patience de l'artisan.
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-foreground/85">
-              Notre équipe vous accueille chaque jour avec le sourire, qu'il
-              s'agisse de la baguette du quotidien ou d'une pâtisserie pour
-              célébrer un moment d'exception au cœur du Val de Loire.
-            </p>
+            <p className="mt-5 text-base leading-relaxed text-foreground/85">{t.historyP1}</p>
+            <p className="mt-4 text-base leading-relaxed text-foreground/85">{t.historyP2}</p>
           </div>
         </div>
       </section>
@@ -361,14 +472,14 @@ function Home() {
                 />
               ))}
             </div>
-            <p className="mt-3 font-display text-2xl font-semibold text-bark">4,5 / 5 sur Google</p>
+            <p className="mt-3 font-display text-2xl font-semibold text-bark">{t.reviewsRating}</p>
             <h2 className="mt-2 font-display text-3xl font-semibold text-bark sm:text-4xl">
-              Ce que disent nos clients
+              {t.reviewsTitle}
             </h2>
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {AVIS.map((a) => (
+            {t.reviews.map((a) => (
               <figure key={a.name} className="rounded-2xl border border-border bg-card p-6 shadow-sm">
                 <div className="mb-3 flex text-gold">
                   {Array.from({ length: 5 }).map((_, i) => (
@@ -390,9 +501,9 @@ function Home() {
       <section id="galerie" className="bg-secondary py-20 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="mb-10 max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brick">Galerie</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brick">{t.galleryEyebrow}</p>
             <h2 className="mt-3 font-display text-3xl font-semibold text-bark sm:text-5xl">
-              Un aperçu de la maison
+              {t.galleryTitle}
             </h2>
           </div>
 
@@ -417,15 +528,11 @@ function Home() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brick">Nous trouver</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brick">{t.findEyebrow}</p>
               <h2 className="text-balance mt-3 font-display text-3xl font-semibold text-bark sm:text-5xl">
-                Au pied du château d'Amboise
+                {t.findTitle}
               </h2>
-              <p className="mt-4 text-base text-muted-foreground">
-                En plein centre-ville, à quelques pas de l'église Saint-Denis et
-                du château royal. Idéal pour une pause gourmande pendant votre
-                visite du Val de Loire.
-              </p>
+              <p className="mt-4 text-base text-muted-foreground">{t.findIntro}</p>
 
               <div className="mt-8 space-y-4">
                 <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-4">
@@ -438,7 +545,7 @@ function Home() {
                       rel="noreferrer"
                       className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-bordeaux hover:underline"
                     >
-                      <Navigation className="h-3.5 w-3.5" /> Itinéraire
+                      <Navigation className="h-3.5 w-3.5" /> {t.itinerary}
                     </a>
                   </div>
                 </div>
@@ -449,19 +556,19 @@ function Home() {
                   <Phone className="mt-0.5 h-5 w-5 shrink-0 text-bordeaux" />
                   <div className="min-w-0">
                     <p className="font-semibold text-bark">{PHONE_DISPLAY}</p>
-                    <p className="text-sm text-muted-foreground">Appeler la boutique</p>
+                    <p className="text-sm text-muted-foreground">{t.callShop}</p>
                   </div>
                 </a>
                 <div className="rounded-xl border border-border bg-card p-5">
                   <div className="mb-3 flex items-center gap-2 text-bark">
                     <Clock className="h-5 w-5 text-bordeaux" />
-                    <p className="font-display text-lg font-semibold">Horaires d'ouverture</p>
+                    <p className="font-display text-lg font-semibold">{t.hoursTitle}</p>
                   </div>
                   <dl className="divide-y divide-border">
-                    {HORAIRES.map((h) => (
-                      <div key={h.jour} className="grid grid-cols-[5rem_1fr] gap-3 py-2 text-sm">
+                    {horaires.map((h) => (
+                      <div key={h.jour} className="grid grid-cols-[6rem_1fr] gap-3 py-2 text-sm">
                         <dt className="font-semibold text-bark">{h.jour}</dt>
-                        <dd className={h.h === "Fermé" ? "text-muted-foreground" : "text-foreground/85"}>
+                        <dd className={h.h === t.closed ? "text-muted-foreground" : "text-foreground/85"}>
                           {h.h}
                         </dd>
                       </div>
@@ -473,7 +580,7 @@ function Home() {
 
             <div className="overflow-hidden rounded-2xl border border-border shadow-lg shadow-bark/10">
               <iframe
-                title="Carte Maison Girondon, Amboise"
+                title="Maison Girondon map, Amboise"
                 src={MAPS_EMBED}
                 className="h-full min-h-[420px] w-full"
                 loading="lazy"
@@ -491,19 +598,17 @@ function Home() {
               <Wheat className="h-5 w-5 text-gold" />
               <span className="font-display text-xl font-semibold">Maison Girondon</span>
             </div>
-            <p className="mt-3 text-sm leading-relaxed text-cream/75">
-              Boulangerie-pâtisserie artisanale au cœur d'Amboise, Val de Loire.
-            </p>
+            <p className="mt-3 text-sm leading-relaxed text-cream/75">{t.footerTagline}</p>
           </div>
           <div className="text-sm leading-relaxed text-cream/85">
-            <p className="font-display text-base font-semibold text-cream">Contact</p>
+            <p className="font-display text-base font-semibold text-cream">{t.footerContact}</p>
             <p className="mt-3">{ADDRESS}</p>
             <a href={`tel:${PHONE_TEL}`} className="block hover:text-gold">
               {PHONE_DISPLAY}
             </a>
           </div>
           <div>
-            <p className="font-display text-base font-semibold text-cream">Suivez-nous</p>
+            <p className="font-display text-base font-semibold text-cream">{t.footerFollow}</p>
             <div className="mt-3 flex items-center gap-3">
               <a
                 href="https://www.facebook.com/"
@@ -519,8 +624,8 @@ function Home() {
         </div>
         <div className="border-t border-cream/15">
           <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-2 px-4 py-5 text-xs text-cream/60 sm:flex-row sm:items-center sm:px-6">
-            <p>© {new Date().getFullYear()} Maison Girondon — Tous droits réservés.</p>
-            <p>Site vitrine · Mentions légales</p>
+            <p>© {new Date().getFullYear()} Maison Girondon — {t.footerRights}</p>
+            <p>{t.footerLegal}</p>
           </div>
         </div>
       </footer>
