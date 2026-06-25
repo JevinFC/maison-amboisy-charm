@@ -506,7 +506,7 @@ function Home() {
             <p className="font-display text-base font-semibold text-cream">Suivez-nous</p>
             <div className="mt-3 flex items-center gap-3">
               <a
-                href="https://www.facebook.com/"
+                href="https://www.facebook.com/maisongirondon"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Facebook"
