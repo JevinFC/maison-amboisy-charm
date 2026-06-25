@@ -95,6 +95,9 @@
     font-weight: 500;
     letter-spacing: -0.01em;
   }
+  #lovable-badge {
+    display: none !important;
+  }
 }
 
 @utility paper-texture {
